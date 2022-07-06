@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "servicenow-test-runner-scheduler"
+version = "0.1.0"
+description = ""
+authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "servicenow_test_runner_scheduler"}]
+license = "MIT"
+homepage = "https://github.com/tddschn/servicenow-test-runner-scheduler"
+repository = "https://github.com/tddschn/servicenow-test-runner-scheduler"
+classifiers = [
+    "Topic :: Utilities"
+]
+keywords = ["servicenow", "test", "runner", "scheduler"]
+
+[tool.poetry.scripts]
+servicenow-test-runner-scheduler = "servicenow_test_runner_scheduler.cli:main"
+snowtrs = "servicenow_test_runner_scheduler.cli:main"
+
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/tddschn/servicenow-test-runner-scheduler/issues"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.3.0"
+pydantic = "^1.9.1"
+python-dotenv = "^0.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.6.0"
+rich = "^12.4.4"
+ipython = "^8.4.0"
+better-exceptions = "^0.3.3"
+bump2version = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

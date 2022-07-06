@@ -1,0 +1,13 @@
+chromedriver
+dryrun
+pipx
+pydantic
+sninstance
+sninstancepwd
+sninstanceuser
+snowtrs
+sysverb
+USERID
+userid
+Xinyuan
+zipapp
