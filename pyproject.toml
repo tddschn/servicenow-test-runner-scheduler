@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "servicenow-test-runner-scheduler"
-version = "0.1.2"
+version = "0.1.3"
 description = "ServiceNow - Start and Schedule Multiple ATF test runners in browser"
 authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
 readme = "README.md"
