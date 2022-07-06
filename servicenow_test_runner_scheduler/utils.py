@@ -7,11 +7,6 @@ from .config import (
     get_settings,
     CLIENT_TEST_RUNNER_URL_PATH,
     SCHEDULED_TEST_RUNNER_URL_PATH,
-    BROWSER_ACTION_INTERVAL,
-    CHECKING_INTERVAL,
-    NUM_INSTANCE,
-    RESTART_INTERVAL,
-    TOLERANCE,
 )
 
 
@@ -21,7 +16,6 @@ def print_append_current_time(counter: int, *args, **kwargs):
     print(f'{datetime.datetime.now()}:', f'Runner #{counter}:', *args, **kwargs)
 
 
-sem = Semaphore(NUM_INSTANCE)
 
 
 def start_client_runner(
@@ -32,6 +26,7 @@ def start_client_runner(
     dry_run: bool = False,
     headless: bool = False,
 ):
+    BROWSER_ACTION_INTERVAL = get_settings().BROWSER_ACTION_INTERVAL
     with sem:
         if dry_run:
             print_append_current_time(
@@ -95,4 +90,3 @@ def start_client_runner(
         browser.close()
 
 
-start_runner = partial(start_client_runner, sem=sem)

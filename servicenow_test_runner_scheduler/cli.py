@@ -6,21 +6,13 @@ Purpose: ServiceNow - Start ATF test runner in browser
 """
 
 import argparse
+from functools import partial
 import sys
-from threading import Thread
+from threading import Semaphore, Thread
 from time import sleep
 from . import __version__, __app_name__, __description__
-from .utils import start_runner
-from .config import (
-    get_settings,
-    CLIENT_TEST_RUNNER_URL_PATH,
-    SCHEDULED_TEST_RUNNER_URL_PATH,
-    BROWSER_ACTION_INTERVAL,
-    CHECKING_INTERVAL,
-    NUM_INSTANCE,
-    RESTART_INTERVAL,
-    TOLERANCE,
-)
+from .utils import start_client_runner
+from .config import get_settings
 
 counter = 0
 
@@ -60,6 +52,11 @@ def main() -> None:
     dry_run = args.dry_run
     scheduled_runner = args.scheduled_runner
     headless = args.headless
+    RESTART_INTERVAL = get_settings().RESTART_INTERVAL
+    NUM_INSTANCE = get_settings().NUM_INSTANCE
+    CHECKING_INTERVAL = get_settings().CHECKING_INTERVAL
+    sem = Semaphore(get_settings().NUM_INSTANCE)
+    start_runner = partial(start_client_runner, sem=sem)
     threads = []
     global counter
     kwargs = dict(

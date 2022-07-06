@@ -32,10 +32,5 @@ def get_settings() -> Settings:
     return settings
 
 
-RESTART_INTERVAL = get_settings().RESTART_INTERVAL
-TOLERANCE = get_settings().TOLERANCE
-NUM_INSTANCE = get_settings().NUM_INSTANCE
-CHECKING_INTERVAL = get_settings().CHECKING_INTERVAL
-BROWSER_ACTION_INTERVAL = get_settings().BROWSER_ACTION_INTERVAL
 
 # counter = 0
