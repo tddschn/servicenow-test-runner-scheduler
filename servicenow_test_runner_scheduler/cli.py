@@ -9,7 +9,7 @@ import argparse
 import sys
 from threading import Thread
 from time import sleep
-from . import __version__, __app_name__
+from . import __version__, __app_name__, __description__
 from .utils import start_runner
 from .config import (
     get_settings,
@@ -30,7 +30,7 @@ def get_args():
 
     parser = argparse.ArgumentParser(
         prog=__app_name__,
-        description='ServiceNow - Start ATF test runner in browser',
+        description=__description__,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
@@ -47,6 +47,9 @@ def get_args():
         help='Start a scheduled runner (default: Client test runner)',
         action='store_true',
     )
+    parser.add_argument(
+        '--headless', help='Run browser instances in headless mode', action='store_true'
+    )
     # parser.add_argument('-e', '--env', help='path to the .env file', default='.env')
 
     return parser.parse_args()
@@ -56,11 +59,13 @@ def main() -> None:
     args = get_args()
     dry_run = args.dry_run
     scheduled_runner = args.scheduled_runner
+    headless = args.headless
     threads = []
     global counter
     kwargs = dict(
         dry_run=dry_run,
         scheduled_runner=scheduled_runner,
+        headless=headless,
     )
     fixed_interval_kwargs = kwargs | dict(close_after=RESTART_INTERVAL)
     for initial_close_after in range(

@@ -30,6 +30,7 @@ def start_client_runner(
     counter: int,
     scheduled_runner: bool = False,
     dry_run: bool = False,
+    headless: bool = False,
 ):
     with sem:
         if dry_run:
@@ -47,7 +48,8 @@ def start_client_runner(
 
         chrome_options = Options()
         chrome_options.add_argument('--no-sandbox')
-        # chrome_options.add_argument('--headless')
+        if headless:
+            chrome_options.add_argument('--headless')
         import time
 
         sninstance = get_settings().INSTANCE.removesuffix('/')

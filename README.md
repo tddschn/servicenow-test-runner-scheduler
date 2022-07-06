@@ -69,6 +69,7 @@ options:
   -n, --dry-run         Dry run (default: False)
   -s, --scheduled-runner
                         Start a scheduled runner (default: Client test runner) (default: False)
+  --headless            Run browser instances in headless mode (default: False)
 ```
 
 
