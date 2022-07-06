@@ -77,6 +77,7 @@ options:
 
 ## Demo
 
+<a href="https://asciinema.org/a/506565"><img src="https://asciinema.org/a/506565.svg" alt="Asciicast" width="650"/></a>
 
 Configuration of this demo:
 
